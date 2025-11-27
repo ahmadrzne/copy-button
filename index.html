@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="fa">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>کپی سریع</title>
+<style>
+  body{font-family:sans-serif;padding:24px;direction:rtl}
+  .box{padding:12px;border:1px solid #ddd;border-radius:8px;max-width:640px;margin:auto}
+  pre{background:#f8f8f8;padding:10px;border-radius:6px;overflow:auto;user-select:text}
+  button{margin-top:12px;padding:10px 14px;border-radius:6px;border:0;cursor:pointer}
+</style>
+<div class="box">
+  <h2>کپی سریع</h2>
+  <div>متن برای کپی:</div>
+  <pre id="text">کد-یا-متن-شما-اینجا</pre>
+  <button id="btn">کپی کن</button>
+  <div id="msg" aria-live="polite" style="margin-top:8px"></div>
+</div>
+<script>
+  const text = document.getElementById('text').innerText;
+  document.getElementById('btn').addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(text);
+      document.getElementById('msg').innerText = 'کپی شد ✅ — حالا در پیست کنید';
+    } catch (e) {
+      document.getElementById('msg').innerText = 'مرورگر اجازهٔ کپی خودکار نداد — متن را نگه دارید و کپی کنید.';
+    }
+  });
+</script>
