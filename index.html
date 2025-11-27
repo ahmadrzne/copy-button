@@ -1,29 +1,65 @@
 <!doctype html>
-<html lang="fa">
+<html lang="en">
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>کپی سریع</title>
+<title>Quick Copy</title>
 <style>
-  body{font-family:sans-serif;padding:24px;direction:rtl}
-  .box{padding:12px;border:1px solid #ddd;border-radius:8px;max-width:640px;margin:auto}
-  pre{background:#f8f8f8;padding:10px;border-radius:6px;overflow:auto;user-select:text}
-  button{margin-top:12px;padding:10px 14px;border-radius:6px;border:0;cursor:pointer}
+  body {
+    font-family: sans-serif;
+    padding: 24px;
+    direction: ltr;
+    background: #fafafa;
+  }
+  .box {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    max-width: 700px;
+    margin: auto;
+    background: #fff;
+  }
+  pre {
+    background: #f0f0f0;
+    padding: 14px;
+    border-radius: 8px;
+    overflow: auto;
+    user-select: text;
+    white-space: pre-wrap;
+  }
+  button {
+    margin-top: 16px;
+    padding: 12px 18px;
+    border-radius: 8px;
+    border: 0;
+    cursor: pointer;
+    font-size: 16px;
+  }
 </style>
+
 <div class="box">
-  <h2>کپی سریع</h2>
-  <div>متن برای کپی:</div>
-  <pre id="text">کد-یا-متن-شما-اینجا</pre>
-  <button id="btn">کپی کن</button>
-  <div id="msg" aria-live="polite" style="margin-top:8px"></div>
+  <h2>Copy Text</h2>
+
+  <div>Text to copy:</div>
+
+  <pre id="text">
+Produce a luxurious rooftop portrait with skyline in the background. Maintain the original selfie's face without any AI face modification. The subject is in a smart-casual outfit _ open collar shirt, linen blazer, watch visible on wrist and black sunglasses. Sunset lighting casts soft golden tones across the skin. Behind, a modern city skyline fades into warm bokeh. Clean, editorial look with professional photography vibes. 4K clarity, vertical 9:16.
+  </pre>
+
+  <button id="btn">Copy</button>
+
+  <div id="msg" aria-live="polite" style="margin-top: 10px; font-size: 15px;"></div>
 </div>
+
 <script>
-  const text = document.getElementById('text').innerText;
-  document.getElementById('btn').addEventListener('click', async () => {
+  const text = document.getElementById("text").innerText.trim();
+
+  document.getElementById("btn").addEventListener("click", async () => {
     try {
       await navigator.clipboard.writeText(text);
-      document.getElementById('msg').innerText = 'کپی شد ✅ — حالا در پیست کنید';
+      document.getElementById("msg").innerText = "Copied successfully! ✅";
     } catch (e) {
-      document.getElementById('msg').innerText = 'مرورگر اجازهٔ کپی خودکار نداد — متن را نگه دارید و کپی کنید.';
+      document.getElementById("msg").innerText =
+        "Your browser blocked auto-copy. You can long-press and copy manually.";
     }
   });
 </script>
